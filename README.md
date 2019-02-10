@@ -37,7 +37,7 @@ latent space
 
 _model with planar flows (16 steps)_
 
-samples (after 10000 iterations, observe highly homogenous samples) 
+samples (after 10000 iterations, observe highly homogeneous samples) 
 
 ![](https://github.com/fmu2/flow-VAE/blob/master/samples/mnist_bs128_ly2_hd400_lt2_gt0__planar_len16_10000.png?raw=true)
 
@@ -47,7 +47,7 @@ latent space (observe inflation in the region with high uncertainty)
 
 _model with radial flows (16 steps)_
 
-samples (after 10000 iterations, observe highly homogenous samples) 
+samples (after 10000 iterations, observe highly homogeneous samples) 
 
 ![](https://github.com/fmu2/flow-VAE/blob/master/samples/mnist_bs128_ly2_hd400_lt2_gt0__radial_len16_10000.png?raw=true)
 
