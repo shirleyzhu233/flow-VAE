@@ -12,16 +12,16 @@ Four types of flows are implemented, including two types of _general normalizing
 
 Three variants of variational autoencoder (VAE) with normalizing flows are implemented. Their specifications and potential issues are summarized below.
 
-- **VAE with dynamic flows** (see ```dynamic_flow_vae.py```). Flow parameters are treated as output of the encoder. In other words, they change with respect to input. This is a principled (and most flexible) way of parametrizing the approximate posterior and is suggested by [2]. Unfortunately, this approach is largely impractical given the potentially huge number of flow parameters, and is extremely susceptible to numerical instability. Furthermore, it leads to little, if any, improvement on the objective value.  
+- **VAE with dynamic flows** (see ```dynamic_flow_vae.py```). Flow parameters are treated as output of the encoder. In other words, they change with respect to input. This is a principled (and most flexible) way of parametrizing the approximate posteriors and is suggested by [2]. Unfortunately, this approach is largely impractical given the potentially huge number of flow parameters, and is extremely susceptible to numerical instability. Furthermore, it leads to little, if any, improvement on the objective value.  
 
--  **VAE with static flows** (see ```static_flow_vae.py```). Flow parameters are treated as learned parameters. In other words, they remain fixed with respect to input. This significantly constrains the richness of approximate posteriors, but is more practical and alleviates (but does not fully resolve) the numerical issue seen with dynamic flows. It is observed that this strategy does lead to moderate improvement on the objective value under certain circumstances, particularly with radial flows. However, sampling becomes problematic since most latent codes lie outside of the most probable region under the standard normal prior (see figure below).
+-  **VAE with static flows** (see ```static_flow_vae.py```). Flow parameters are treated as learned parameters. In other words, they remain fixed with respect to input. This significantly constrains the richness of approximate posteriors, but is more practical and alleviates (but does not fully resolve) the numerical issue seen with dynamic flows. I also observed moderate improvement on the objective value under certain circumstances, particularly with radial flows. However, sampling becomes problematic since most latent codes lie outside of the most probable region under the standard normal prior (see figures below).
 
-- **Convolutional VAE with static flow** (see ```static_flow_conv_vae.py```). Convolutional layers instead of dense layers are used.
+- **Convolutional VAE with static flow** (see ```static_flow_conv_vae.py```). Convolutional layers instead of dense layers are used in the encoder and the decoder.
 
-Based on my experiments, the idea of enriching approximate posteriors in VAE using normalizing flows is theoretically appealing but can cause more headache than benefit in real practice. Flow-based generative models may be better options if the goal is to improve data likelihood. You are welcomed to check out my implementation of [NICE](https://github.com/fmu2/NICE), [realNVP](https://github.com/fmu2/realNVP) and Glow (forthcoming).
+Based on the experiments, I concluded that the idea of enriching approximate posteriors in VAE using normalizing flows is theoretically appealing but can easily cause more headache than benefit in real practice. Flow-based generative models may be better options if the goal is to improve data likelihood. You are welcome to check out my implementation of [NICE](https://github.com/fmu2/NICE), [realNVP](https://github.com/fmu2/realNVP) and Glow (forthcoming).
 
 ## Result
-We only show results on MNIST. The models use dense layers and static flow. The obeservation carries over to other datasets. 
+I only show results on MNIST. The models use dense layers and static flows. The obeservation carries over to other datasets. 
 
 **MNIST** 
 
