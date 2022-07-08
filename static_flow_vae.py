@@ -336,15 +336,20 @@ class VAE(nn.Module):
             z = self.decoder[i](z)
         return z
 
-    def sample(self, size):
+    def sample(self, size, sigma=1.0):
         """Generates samples from the prior.
 
         Args:
             size: number of samples to generate.
+            sigma: scaling factor for the prior variance
         Returns:
             generated samples.
         """
-        z = torch.randn(size, self.latent_dim).cuda()
+        sigma = torch.tensor(sigma).cuda()
+        mean = torch.zeros(size, self.latent_dim).cuda()
+        log_var = torch.ones(size, self.latent_dim).cuda()
+        log_var = sigma.log() * log_var
+        z, _ = self.transform(mean, log_var)
         if self.dataset == 'mnist':	
         	return torch.sigmoid(self.decode(z))
         else:
